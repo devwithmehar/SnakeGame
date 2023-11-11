@@ -43,11 +43,32 @@ public class SnakeGame extends JPanel {
         setBackground(Color.BLACK);
 
         snakeHead = new Tile(5,5);
+        
     }
-
-    public void paintComponet(Graphics g){
+    /*
+     * super.paintComponent(g) is calling supper class
+     * paintComponent method
+     */
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-       
+        draw(g);
+    }
+    
+  
+    /*
+     * This function is responsible to make grids of tile
+     * responible for snake head color and size
+     */
+    public void draw(Graphics g){
+        // Grid
+        for(int i = 0; i < boardWidth/tileSize; i++){
+            g.drawLine(i*tileSize,0 , i* tileSize, boardHeight);
+            g.drawLine(0, i*tileSize, boardWidth, i*tileSize);
+        }
+
+        // SNake 
+        g.setColor(Color.green);
+        g.fillRect(snakeHead.x * tileSize, snakeHead.y * tileSize, tileSize, tileSize);
     }
 
 }
