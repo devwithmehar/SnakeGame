@@ -7,7 +7,7 @@ import javax.swing.*;
 /*
  * This Class will Inherit the Jpanel
  */
-public class SnakeGame extends JPanel implements ActionListener {
+public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
     /*
      *  We will create the private class so that only
@@ -41,6 +41,8 @@ public class SnakeGame extends JPanel implements ActionListener {
 
     // game logic
     Timer gameLoop;
+    int velocityX;
+    int velocityY;
 
     SnakeGame(int boardWidth , int boardHeight){
         this.boardHeight = boardHeight;
@@ -52,12 +54,19 @@ public class SnakeGame extends JPanel implements ActionListener {
         // set background color to black
         setBackground(Color.BLACK);
 
+        // Listen to the key presses 
+        addKeyListener(this);
+        setFocusable(true);
+
         snakeHead = new Tile(5,5);
 
         food = new Tile(10,10);
 
         random = new Random();
         placefood();
+
+        velocityX = 0;
+        velocityY = 0;
 
         gameLoop = new Timer(100, this);
         gameLoop.start();
@@ -102,8 +111,52 @@ public class SnakeGame extends JPanel implements ActionListener {
         food.y = random.nextInt(boardHeight/tileSize);
      }
 
+     public void move(){
+        // Snake Head
+        snakeHead.x += velocityX;
+        snakeHead.y += velocityY;
+     }
+
      @Override
      public void actionPerformed(ActionEvent e){
+        move();
         repaint();
      }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+       switch (e.getKeyCode()) {
+        case KeyEvent.VK_UP:
+            velocityX = 0;
+            velocityY = -1;
+            break;
+        case KeyEvent.VK_DOWN:
+            velocityX = 0;
+            velocityY = 1;
+            break;
+        case KeyEvent.VK_LEFT:
+        velocityX = -1;
+        velocityY = 0;
+        break;
+        case KeyEvent.VK_RIGHT:
+        velocityX = 1;
+        velocityY = 0;
+        default:
+            break;
+       }
+    }
+
+    // NO need of this method
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    // NO need of this method
+    @Override
+    public void keyReleased(KeyEvent e) {
+      
+    }
+
+     
 }
