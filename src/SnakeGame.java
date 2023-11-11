@@ -56,6 +56,8 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
         // Listen to the key presses 
         addKeyListener(this);
+
+        // in order to listen to key pressed 
         setFocusable(true);
 
         snakeHead = new Tile(5,5);
