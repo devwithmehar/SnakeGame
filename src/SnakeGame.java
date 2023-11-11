@@ -127,25 +127,23 @@ public class SnakeGame extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-       switch (e.getKeyCode()) {
-        case KeyEvent.VK_UP:
+        if(e.getKeyCode() == KeyEvent.VK_UP && velocityY != 1){
             velocityX = 0;
             velocityY = -1;
-            break;
-        case KeyEvent.VK_DOWN:
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_DOWN && velocityY != -1){
             velocityX = 0;
             velocityY = 1;
-            break;
-        case KeyEvent.VK_LEFT:
-        velocityX = -1;
-        velocityY = 0;
-        break;
-        case KeyEvent.VK_RIGHT:
-        velocityX = 1;
-        velocityY = 0;
-        default:
-            break;
-       }
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT && velocityX != 1){
+            velocityX = -1;
+            velocityY = 0;
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_RIGHT && velocityX != -1){
+            velocityX = 1;
+            velocityY = 0;
+        }
+       
     }
 
     // NO need of this method
