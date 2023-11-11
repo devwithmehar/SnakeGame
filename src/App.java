@@ -33,5 +33,7 @@ public class App {
 
         // It will place the Jpanel inside the frame with the 4 Dimensions
         frame.pack();
+
+        snakeGame.requestFocus();
     }
 }
