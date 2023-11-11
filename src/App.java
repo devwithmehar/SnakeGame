@@ -24,5 +24,14 @@ public class App {
 
         // set closing operation of window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Create the Object of Snake Game
+        SnakeGame snakeGame = new SnakeGame(boardWidth, boardHeight);
+        
+        // Add the snakeGame in the Frame 
+        frame.add(snakeGame);
+
+        // It will place the Jpanel inside the frame with the 4 Dimensions
+        frame.pack();
     }
 }
