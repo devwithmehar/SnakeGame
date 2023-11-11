@@ -36,6 +36,9 @@ public class SnakeGame extends JPanel {
     // Food 
     Tile food;
 
+    // create random object
+    Random random;
+
     SnakeGame(int boardWidth , int boardHeight){
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
@@ -49,6 +52,9 @@ public class SnakeGame extends JPanel {
         snakeHead = new Tile(5,5);
 
         food = new Tile(10,10);
+
+        random = new Random();
+        placefood();
         
     }
     /*
@@ -81,4 +87,12 @@ public class SnakeGame extends JPanel {
         g.fillRect(snakeHead.x * tileSize, snakeHead.y * tileSize, tileSize, tileSize);
     }
 
+    /*
+     * This function will just randomly place the food in 
+     * X and Y coordinate
+     */
+     public void placefood(){
+        food.x = random.nextInt(boardWidth/tileSize);
+        food.y = random.nextInt(boardHeight/tileSize);
+     }
 }
