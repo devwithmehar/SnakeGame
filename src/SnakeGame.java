@@ -7,7 +7,7 @@ import javax.swing.*;
 /*
  * This Class will Inherit the Jpanel
  */
-public class SnakeGame extends JPanel {
+public class SnakeGame extends JPanel implements ActionListener {
 
     /*
      *  We will create the private class so that only
@@ -39,6 +39,9 @@ public class SnakeGame extends JPanel {
     // create random object
     Random random;
 
+    // game logic
+    Timer gameLoop;
+
     SnakeGame(int boardWidth , int boardHeight){
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
@@ -55,6 +58,9 @@ public class SnakeGame extends JPanel {
 
         random = new Random();
         placefood();
+
+        gameLoop = new Timer(100, this);
+        gameLoop.start();
         
     }
     /*
@@ -94,5 +100,10 @@ public class SnakeGame extends JPanel {
      public void placefood(){
         food.x = random.nextInt(boardWidth/tileSize);
         food.y = random.nextInt(boardHeight/tileSize);
+     }
+
+     @Override
+     public void actionPerformed(ActionEvent e){
+        repaint();
      }
 }
