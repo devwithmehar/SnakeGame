@@ -30,7 +30,11 @@ public class SnakeGame extends JPanel {
     // Define Tile size to 25px
     int tileSize = 25;
 
+    // Snake
     Tile snakeHead;
+
+    // Food 
+    Tile food;
 
     SnakeGame(int boardWidth , int boardHeight){
         this.boardHeight = boardHeight;
@@ -43,6 +47,8 @@ public class SnakeGame extends JPanel {
         setBackground(Color.BLACK);
 
         snakeHead = new Tile(5,5);
+
+        food = new Tile(10,10);
         
     }
     /*
@@ -66,7 +72,11 @@ public class SnakeGame extends JPanel {
             g.drawLine(0, i*tileSize, boardWidth, i*tileSize);
         }
 
-        // SNake 
+        // Food
+        g.setColor(Color.RED);
+        g.fillRect(food.x * tileSize, food.y * tileSize,tileSize, tileSize );
+
+        // Snake 
         g.setColor(Color.green);
         g.fillRect(snakeHead.x * tileSize, snakeHead.y * tileSize, tileSize, tileSize);
     }
